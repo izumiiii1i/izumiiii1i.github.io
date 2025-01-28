@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>卡片圆周旋转效果</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #fff;
+      margin: 0;
+    }
+
+    .container {
+      position: relative;
+      width: 400px;
+      height: 400px;
+    }
+
+    .card {
+      position: absolute;
+      width: 100px;
+      height: 150px;
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid #ddd;
+    }
+
+    .card-front {
+      background-color: #fff;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      background-color: #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="container">
+    <div class="card">
+      <div class="card-front" style="background-image: url('card1.png');"></div>
+      <div class="card-back" style="background-image: url('back.png');"></div>
+    </div>
+    <div class="card">
+      <div class="card-front" style="background-image: url('card2.png');"></div>
+      <div class="card-back" style="background-image: url('back.png');"></div>
+    </div>
+    <div class="card">
+      <div class="card-front" style="background-image: url('card3.png');"></div>
+      <div class="card-back" style="background-image: url('back.png');"></div>
+    </div>
+    <div class="card">
+      <div class="card-front" style="background-image: url('card4.png');"></div>
+      <div class="card-back" style="background-image: url('back.png');"></div>
+    </div>
+    <div class="card">
+      <div class="card-front" style="background-image: url('card5.png');"></div>
+      <div class="card-back" style="background-image: url('back.png');"></div>
+    </div>
+  </div>
+
+  <script>
+    const container = document.getElementById('container');
+    const cards = document.querySelectorAll('.card');
+    const centerX = 200; // 圆心X坐标
+    const centerY = 200; // 圆心Y坐标
+    const radius = 200; // 圆周半径
+    const totalCards = cards.length; // 卡片数量
+    const angleStep = 360 / totalCards; // 每张卡片的间隔角度
+    let currentAngle = 0; // 当前旋转角度
+    let timer; // 定时器
+
+    // 初始化卡片位置
+    function positionCards() {
+      cards.forEach((card, index) => {
+        const angle = (index * angleStep + currentAngle) * (Math.PI / 180); // 当前卡片的弧度
+        const x = centerX + radius * Math.cos(angle) - 50; // x坐标，50为卡片宽度的一半
+        const y = centerY + radius * Math.sin(angle) - 75; // y坐标，75为卡片高度的一半
+        card.style.transform = `translate(${x}px, ${y}px) rotate(0deg)`;
+      });
+    }
+
+    // 开始旋转
+    function startRotation() {
+      timer = setInterval(() => {
+        currentAngle += 1; // 每次增加1度
+        positionCards();
+      }, 50); // 每50ms更新一次
+    }
+
+    // 停止旋转
+    function stopRotation() {
+      clearInterval(timer);
+    }
+
+    // 初始化卡片悬停事件
+    cards.forEach((card) => {
+      card.addEventListener('mouseover', stopRotation); // 悬停停止
+      card.addEventListener('mouseout', startRotation); // 离开继续旋转
+    });
+
+    // 初始化位置并开始旋转
+    positionCards();
+    startRotation();
+  </script>
+</body>
+</html>

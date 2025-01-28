@@ -1,0 +1,82 @@
+body {
+    font-family: 'Georgia', serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+.fan {
+    position: relative;
+    width: 900px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    margin-top: -100px;
+    text-align: center;
+}
+
+.text-image {
+    max-width: 60%;
+    height: auto;
+    display: inline-block;
+}
+
+footer {
+    margin-top: 40px;
+    text-align: right;
+}
+
+.symbols-image {
+    max-width: 150px;
+    height: auto;
+    display: inline-block;
+    pointer-events: auto;
+}
+
+/* 卡片默认样式，背面图片 */
+.card {
+    position: absolute;
+    width: 120px;
+    height: 180px;
+    transform-origin: bottom center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease, background-image 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    background-color: #ddd;
+    background-image: url('back.png'); /* 默认背景图片 */
+    background-size: cover;
+    background-position: center;
+}
+
+/* 设置卡片的旋转角度 */
+.card:nth-child(1) { transform: rotate(-75deg) translateY(-200px); }
+.card:nth-child(2) { transform: rotate(-58.33deg) translateY(-200px); }
+.card:nth-child(3) { transform: rotate(-41.67deg) translateY(-200px); }
+.card:nth-child(4) { transform: rotate(-25deg) translateY(-200px); }
+.card:nth-child(5) { transform: rotate(-8.33deg) translateY(-200px); }
+.card:nth-child(6) { transform: rotate(8.33deg) translateY(-200px); }
+.card:nth-child(7) { transform: rotate(25deg) translateY(-200px); }
+.card:nth-child(8) { transform: rotate(41.67deg) translateY(-200px); }
+.card:nth-child(9) { transform: rotate(58.33deg) translateY(-200px); }
+.card:nth-child(10) { transform: rotate(75deg) translateY(-200px); }
+
+/* 鼠标悬停显示正面图片 */
+.card:hover {
+    background-image: attr(data-image url); /* 使用 data-image 属性设置正面图片 */
+    box-shadow: 0 0 15px 5px gold;
+    z-index: 10;
+}

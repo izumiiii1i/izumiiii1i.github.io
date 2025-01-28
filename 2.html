@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>卡片正反面动画效果</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #fff;
+      margin: 0;
+    }
+
+    .container {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      perspective: 1000px; /* 增加3D效果 */
+    }
+
+    .card {
+      position: absolute;
+      width: 100px;
+      height: 150px;
+      transform-style: preserve-3d; /* 启用3D效果 */
+      transform-origin: bottom center;
+      transform: translate(150px, 250px) rotateX(-90deg);
+      opacity: 0;
+      transition: all 1s ease-in-out;
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid #ddd;
+    }
+
+    .card-front {
+      background-color: #fff;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      background-color: #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-front" style="background-image: url('card1.png');"></div>
+      <div class="card-back" style="background-image: url('back.png');"></div>
+    </div>
+    <div class="card">
+      <div class="card-front" style="background-image: url('card2.png');"></div>
+      <div class="card-back" style="background-image: url('back.png');"></div>
+    </div>
+    <div class="card">
+      <div class="card-front" style="background-image: url('card3.png');"></div>
+      <div class="card-back" style="background-image: url('back.png');"></div>
+    </div>
+    <div class="card">
+      <div class="card-front" style="background-image: url('card4.png');"></div>
+      <div class="card-back" style="background-image: url('back.png');"></div>
+    </div>
+    <div class="card">
+      <div class="card-front" style="background-image: url('card5.png');"></div>
+      <div class="card-back" style="background-image: url('back.png');"></div>
+    </div>
+    <div class="card">
+        <div class="card-front" style="background-image: url('card6.png');"></div>
+        <div class="card-back" style="background-image: url('back.png');"></div>
+      </div>
+      <div class="card">
+        <div class="card-front" style="background-image: url('card7.png');"></div>
+        <div class="card-back" style="background-image: url('back.png');"></div>
+      </div>
+      <div class="card">
+        <div class="card-front" style="background-image: url('card8.png');"></div>
+        <div class="card-back" style="background-image: url('back.png');"></div>
+      </div>
+      <div class="card">
+        <div class="card-front" style="background-image: url('card9.png');"></div>
+        <div class="card-back" style="background-image: url('back.png');"></div>
+      </div>
+      <div class="card">
+        <div class="card-front" style="background-image: url('card10.png');"></div>
+        <div class="card-back" style="background-image: url('back.png');"></div>
+      </div>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const centerX = 200; // 圆心的 X 坐标
+    const centerY = 200; // 圆心的 Y 坐标
+    const radius = 150; // 圆形半径
+    const firstStepDuration = cards.length * 200; // 第一步总持续时间
+    let rotationAngle = 0; // 圆形旋转的起始角度
+
+    // 第一步：弯曲出场（从正面视角弯曲）
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.style.transform = `translate(${centerX - 50}px, ${centerY - 75}px) rotateX(0deg)`; // 从弯曲到展开
+        card.style.opacity = 1;
+
+        // 确保正面朝上
+        card.querySelector('.card-front').style.transform = 'rotateY(0deg)';
+        card.querySelector('.card-back').style.transform = 'rotateY(180deg)';
+      }, index * 300); // 依次延迟出场
+    });
+
+    // 第二步：重合到中心
+    setTimeout(() => {
+      cards.forEach((card) => {
+        card.style.transform = `translate(${centerX - 50}px, ${centerY - 75}px) rotateX(0deg)`;
+      });
+    }, firstStepDuration + 500);
+
+    // 第三步：散开成圆（每张卡片有间隙）
+    setTimeout(() => {
+      cards.forEach((card, index) => {
+        const totalCards = cards.length;
+        const angle = (index / totalCards) * 2 * Math.PI; // 每张卡片的角度
+        const gap = 30; // 空隙大小（以像素为单位）
+
+        // 调整半径，让卡片之间有间隙
+        const adjustedRadius = radius + gap;
+
+        const x = centerX + adjustedRadius * Math.cos(angle); // 圆周上的 X 坐标
+        const y = centerY + adjustedRadius * Math.sin(angle); // 圆周上的 Y 坐标
+        const rotateAngle = (angle * 180) / Math.PI + 90; // 旋转角度（+90 顶部朝向圆心）
+
+        card.style.transform = `translate(${x - 50}px, ${y - 75}px) rotate(${rotateAngle}deg)`;
+
+        // 翻转到背面
+        setTimeout(() => {
+          card.querySelector('.card-front').style.transform = 'rotateY(180deg)';
+          card.querySelector('.card-back').style.transform = 'rotateY(0deg)';
+        }, 1500); // 延迟 500ms 翻转
+      });
+    }, firstStepDuration + 500 + 2000);
+  </script>
+</body>
+</html>

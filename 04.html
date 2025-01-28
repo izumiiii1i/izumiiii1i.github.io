@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Image Hyperlink</title>
+    <style>
+        /* 全局样式，设置页面为全屏并启用Flexbox居中 */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            height: 100vh; /* 让页面高度占满屏幕 */
+            background-color: #f4f4f4; /* 可选：设置背景颜色 */
+        }
+
+        /* 图片样式 */
+        a img {
+            width: 350px; /* 设置图片宽度 */
+            height: auto; /* 保持宽高比 */
+            border: 2px solid #ccc; /* 图片边框 */
+            border-radius: 8px; /* 圆角效果 */
+            transition: transform 0.3s, box-shadow 0.3s; /* 添加过渡效果 */
+        }
+
+        /* 鼠标悬停样式 */
+        a img:hover {
+            transform: scale(1.1); /* 放大效果 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+        }
+
+    </style>
+</head>
+<body>
+    <a href="05.html">
+        <img src="back.png" alt="Back">
+    </a>
+
+</body>
+</html>

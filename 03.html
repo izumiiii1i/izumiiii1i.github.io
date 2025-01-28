@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03.html</title>
+    <link rel="stylesheet" href="styles-03.css">
+</head>
+<body>
+    <div class="container">
+        <div class="fan">
+            <!-- 每张卡片分别添加 data-image 属性存储正面图片路径 -->
+            <div class="card" data-image="card1.png"></div>
+            <div class="card" data-image="card2.png"></div>
+            <div class="card" data-image="card3.png"></div>
+            <div class="card" data-image="card4.png"></div>
+            <div class="card" data-image="card5.png"></div>
+            <div class="card" data-image="card6.png"></div>
+            <div class="card" data-image="card7.png"></div>
+            <div class="card" data-image="card8.png"></div>
+            <div class="card" data-image="card9.png"></div>
+            <div class="card" data-image="card10.png"></div>
+        </div>
+        <div class="text">
+            <img src="pick-up-the-card.png" alt="Pick up the card" class="text-image">
+        </div>
+        <!-- 底部符号图片 -->
+        <footer>
+            <a href="04.html">
+                <img src="symbols-image.png" alt="Symbols" class="symbols-image">
+            </a>
+        </footer>
+    </div>
+
+    <!-- 在HTML底部引入JS代码
+    <script>
+        // JavaScript 逻辑：鼠标悬停切换正面和背面图片
+        document.querySelectorAll('.card').forEach(card => {
+            // 鼠标移入事件：切换为正面图片
+            card.addEventListener('mouseover', () => {
+                const image = card.getAttribute('data-image');
+                card.style.backgroundImage = `url(${image})`;
+            });
+            // 鼠标移出事件：切换回背面图片
+            card.addEventListener('mouseout', () => {
+                card.style.backgroundImage = `url('back.png')`;
+            });
+        });
+    </script> -->
+</body>
+</html>

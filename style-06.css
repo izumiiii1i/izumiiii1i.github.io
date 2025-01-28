@@ -1,0 +1,63 @@
+/* 全局样式 */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* 容器布局 */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
+
+/* 左侧问号图片样式 */
+.left {
+    margin-top: -350px; 
+    grid-column: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.question-mark-image {
+    max-width: 200px; /* 问号图片宽度 */
+    height: auto;
+}
+
+/* 中间标题图片样式 */
+.center {
+    margin-top: 100px; 
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-image {
+    max-width: 650px; /* 标题图片宽度 */
+    height: auto;
+}
+
+footer {
+    margin-top: 700px;   
+    margin-right: 40px;
+    text-align: right; /* 确保 footer 内容右对齐 */
+}
+
+.symbols-image {
+    max-width: 150px;
+    height: auto;
+    display: inline-block;
+    pointer-events: auto;
+    margin: 0; /* 确保没有额外的边距 */
+    float: right; /* 确保图片紧贴右侧 */
+}
